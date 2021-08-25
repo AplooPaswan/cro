@@ -14,7 +14,7 @@ const DarkModeSwitch = () => {
             aria-label="Toggle"
             icon={colorMode === 'dark' ? <SunIcon/> : <MoonIcon/>}
             onClick={toggleColorMode}
-            isRound=true
+            isRound={true}
         />
             
         </>
