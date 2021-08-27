@@ -101,9 +101,7 @@ const Navbar = () => {
                                 aria-label="Options"
                                 icon={ email !== "" ? <Avatar src={img} name={name} />  : <HamburgerIcon borderWidth="0px" bgColor="" />}
                                 variant="outline"
-                                outline="none"
-                                
-                                _hover={{borderWidth :"0px"},{outline:"none"}}
+        
                                 ml="2"
                             />
                             <MenuList>
