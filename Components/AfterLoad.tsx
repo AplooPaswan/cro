@@ -15,6 +15,8 @@ const AfterLoad = (coinName) => {
 
   const {data,loading} = useFetch(url,[count])
 
+  setInterval(() => {  }, 3000)
+
     return (
       <>
             {

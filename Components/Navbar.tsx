@@ -22,7 +22,7 @@ const Navbar = () => {
         </title>
     </Head>
             
-            <Stack bgColor="blackAlpha.100" justifyContent="space-around" borderBottomWidth="1px">
+            <Stack bgColor="blackAlpha.100" justifyContent="space-around" borderBottomWidth="">
                 
                 <Flex pt="2" pb="2" justifyContent="space-between" bgColor="">
                     <Box bgColor="">
@@ -58,7 +58,7 @@ const Navbar = () => {
                             <MenuButton
                                 as={IconButton}
                                 aria-label="Options"
-                                icon={<HamburgerIcon />}
+                                icon={<HamburgerIcon borderWidth="0px" />}
                                 variant="outline"
                                 ml="2"
                             />

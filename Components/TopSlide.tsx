@@ -12,6 +12,7 @@ const TopSlide = (card) => {
 
 
     function AmtFormat(x){
+        
         return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
 
@@ -82,7 +83,11 @@ function onChangeOption(e){
      return (
     <>
 
-        <Stack mt="2" >
+
+{/* Top =====================================   #3 options   ==================================== */}
+
+
+        {/* <Stack mt="2" >
             <Flex justifyContent="space-around" px="1" >
                 <Box minW="4" >
                         <FormControl id="currency">
@@ -120,7 +125,7 @@ function onChangeOption(e){
                         </FormControl>     
                 </Box>
             </Flex>
-        </Stack>
+        </Stack> */}
 
 {/* ============================================================================================================================== */}
 <Flex justifyContent="">
@@ -158,12 +163,14 @@ function onChangeOption(e){
                 <Box borderRadius="sm"  
                     minH="180px" spacing="10px" 
                     minW="sm" maxW="400px" maxH="200px" 
-                    p="2" bgColor="" 
-                    borderWidth="1px" 
+                    p="2" 
+                    fontWeight="bold"
+                    borderWidth="" 
                     overflow="hidden"
                     boxShadow="sm"
                     cursor="pointer"
                     key={index}
+                    bgColor="rgb(6,17,33)"
                     
                 >
                    <Flex justify="space-evenly" >
@@ -173,23 +180,23 @@ function onChangeOption(e){
                          </Box>  
 
                         <Box justifyContent="center">
-                            <Text fontSize="2xl" color="gray">{cards.name}</Text>
+                            <Text fontSize="2xl" color="gray" fontWeight="bold">{cards.name}</Text>
 
                             <Text  color="red">Low :</Text>
                             <Text color="orange">High :</Text>
                                                         
                             <Text color="orange.900">ATL</Text>
-                            <Text color="green.300">ATH :</Text>
+                            <Text color="green.500">ATH :</Text>
                             <Text color="green" fontSize="2xl">Price :</Text>
                             
                         </Box>
                         <Box justifyContent="center">
-                            <Text fontSize="2xl" color="gray">( {cards.symbol} )</Text>
+                            <Text fontSize="2xl" color="gray" textTransform="uppercase" fontWeight="bold">( {cards.symbol} )</Text>
                             <Text color="orange">$ {AmtFormat(`${cards.low_24h}`)}</Text>
                             <Text color="red" >$ {AmtFormat(`${cards.high_24h}`)}</Text>
                             
                             <Text color="orange.900">$ {AmtFormat(`${cards.atl}`)}</Text>
-                            <Text color="green.300">$ {AmtFormat(`${cards.ath}`)}</Text>
+                            <Text color="green.500">$ {AmtFormat(`${cards.ath}`)}</Text>
                             <Text color="green" fontSize="2xl">$  {AmtFormat(`${cards.current_price}`)} </Text>
                             
                         </Box>
@@ -207,7 +214,7 @@ function onChangeOption(e){
 
 <Spacer mt="3" mb="3" />
 
-    <Tabs variant="soft-rounded" colorScheme="gray">
+    <Tabs variant="soft-rounded" colorScheme="gray" >
         <TabList justifyContent="space-around">
             <Tab>Top 100</Tab>
             <Tab>Top Gainer</Tab>
@@ -272,16 +279,16 @@ function onChangeOption(e){
     </Flex> */}
 
 
-<Box overflow="auto" mb={1} borderWidth="1px" borderRadius="1px">
+<Box overflow="auto" mb={1} borderWidth="0px" borderRadius="1px" >
 
-    <Flex  py="2" pt="2"  fontWeight="semibold">
+    <Flex  py="2" pt="1.5" pb="2.5"  fontWeight="semibold" bgColor="gray.800" color="GrayText">
 
 {/* ========================================= */}
                         <Box maxW="14" pt="1.5" >
                             <Box minW="4"   style={{display: `${isLargerThan ? "block" : "none"}`}}>#</Box>
                         </Box>
 
-                      <Box minW="16" pt="1.5"  pl="1">
+                      <Box minW="16" pt="1.5"  pl="2">
                         Logo                        
                       </Box>
 {/* ====================================================== */}
@@ -290,8 +297,8 @@ function onChangeOption(e){
                           <Flex justifyContent='space-between' >
                                
                                 <Box   minW="14"   style={{display: `${isLargerThan ? "block" : "none"}`}}>Name</Box>
-                                <Box   float="left" minW="14"      >L</Box>
-                                <Box   float="left" minW="14"  >H</Box>
+                                <Box   float="left" minW="14"      >Low</Box>
+                                <Box   float="left" minW="14"  >High</Box>
 
                                 <Box   float="left" minW="14"   style={{display: `${isLargerThan ? "block" : "none"}`}} >ATL</Box>
                                 <Box   float="left" minW="14"  style={{display: `${isLargerThan ? "block" : "none"}`}}>ATH</Box>
@@ -307,36 +314,35 @@ function onChangeOption(e){
 
 
 
-      {card && card?.card?.map((rows,index)=>(
+{card && card?.card?.map((rows,index)=>(
 
-              <Box overflow="auto" key={index} mb={1} borderWidth="1px" borderRadius="2px">
-                  <Flex  py="2" _hover={{backgroundColor:"gray.900"}}>
-                        <Box maxW="6" mr="2" style={{display: `${isLargerThan ? "block" : "none"}`}}>
+<Box overflow="auto" cursor="pointer" key={index} mb={1} borderWidth="" borderRadius="2px" bgColor="rgb(6,17,33)" fontWeight="bold">
+    <Flex  py="2" _hover={{backgroundColor:"black"}}>
+        <Box maxW="6" mr="2" style={{display: `${isLargerThan ? "block" : "none"}`}}>
                             <Box minW="24" color="gray" style={{display: `${isLargerThan ? "block" : "none"}`}} >#{rows.market_cap_rank}</Box>
-                        </Box>
+        </Box>
 
-                      <Box minW="14" bgColor="" pl="1">
-                        <Image src={rows.image} alt="" bgColor="white" maxW="10" borderRadius="full" />
-                        
-                      </Box>
+        <Box minW="14" bgColor="" pl="1">
+            <Image src={rows.image} alt="" bgColor="white" maxW="8" borderRadius="full" />
+            <Spacer/>
+           <Text fontWeight="semibold" fontSize="xs" textTransform="uppercase" pt="1" pl="1" color="GrayText">{rows.symbol}</Text>
+        </Box>
 
-                      <Box py="1.5" w="full" >
-                          <Flex justifyContent='space-between' fontWeight="" fontFamily="-moz-initial">
-                                <Box   minW="24" color="gray"  style={{display: `${isLargerThan ? "block" : "none"}`}}>{rows.name}</Box>
-                                <Box   float="left" minW="20" color="red"     >$ {AmtFormat(`${rows.low_24h}`)}</Box>
-                                <Box   float="left" minW="20" color="orange"  >$ {AmtFormat(`${rows.high_24h}`)}</Box>
+        <Box pt="3" w="full" >
+            <Flex justifyContent='space-between' fontWeight="" fontFamily="-moz-initial">
+                <Box   minW="24" color="gray"  style={{display: `${isLargerThan ? "block" : "none"}`}}>{rows.name}</Box>
+                <Box   float="left" minW="20" color="red"     >$ {AmtFormat(`${rows.low_24h}`)}</Box>
+                <Box   float="left" minW="20" color="orange"  >$ {AmtFormat(`${rows.high_24h}`)}</Box>
+                <Box   float="left" minW="20" color=""    style={{display: `${isLargerThan ? "block" : "none"}`}} >$ {AmtFormat(`${rows.atl}`)}</Box>
+                <Box   float="left" minW="20" color=""  style={{display: `${isLargerThan ? "block" : "none"}`}}>$ {AmtFormat(`${rows.ath}`)}</Box>
+                <Box   float="left" minW="20" color="" style={{display: `${isLargerThan ? "block" : "none"}`}}>{rows.market_cap_change_percentage_24h}</Box>
+                <Box   float="left" minW="20"  color="green" fontWeight="extrabold" >$ {AmtFormat(`${rows.current_price}`)}</Box>
+                <Box   float="left" minW="10"  > <Box as="button" borderColor="white">+</Box> </Box>
+            </Flex>                          
+        </Box>
 
-                                <Box   float="left" minW="20" color=""    style={{display: `${isLargerThan ? "block" : "none"}`}} >$ {AmtFormat(`${rows.atl}`)}</Box>
-                                <Box   float="left" minW="20" color=""  style={{display: `${isLargerThan ? "block" : "none"}`}}>$ {AmtFormat(`${rows.ath}`)}</Box>
-                                <Box   float="left" minW="20" color="" style={{display: `${isLargerThan ? "block" : "none"}`}}>{rows.market_cap_change_percentage_24h}</Box>
-                                <Box   float="left" minW="20"  color="green" fontWeight="extrabold">$ {AmtFormat(`${rows.current_price}`)}</Box>
-                                <Box   float="left" minW="10"  > <Box as="button" borderColor="white">+</Box> </Box>
-                                
-                          </Flex>
-                          
-                      </Box>
-                  </Flex>
-              </Box>
+    </Flex>
+</Box>
       ))
     }
         
