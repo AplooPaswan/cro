@@ -1,16 +1,42 @@
 import { AddIcon, ChevronDownIcon, EditIcon, ExternalLinkIcon, HamburgerIcon, RepeatIcon, Search2Icon, SearchIcon, SunIcon, ViewIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, HStack, Image, Input, InputGroup, InputLeftElement, Menu, MenuButton, MenuItem, MenuList, Stack } from '@chakra-ui/react'
+import { Avatar, Box, Button, Flex, HStack, Image, Input, InputGroup, InputLeftElement, Menu, MenuButton, MenuItem, MenuList, Stack, Text } from '@chakra-ui/react'
 import { IconButton } from "@chakra-ui/react"
 import DarkModeSwitch from './DarkModeSwitch'
 import Inr from '../img/INR.svg'
 import Head from 'next/head'
+import React from "react"; import { GoogleLogin } from "react-google-login";
+import { useState } from 'react'
 
+const clientId ="427283001518-7r1m5ubnjjqh46neaaehg39f6eobgka0.apps.googleusercontent.com"; 
+let Proimg;
 
 const Navbar = () => {
+
+    const [img,setImg] = useState("");
+    const [name,setName] = useState("");
+    const [email,setEmail] = useState("");
+    
+
+    const onSuccess = (res) => { 
+
+        console.log("Login Success: currentUser:", res.profileObj); 
+
+        setImg(res.profileObj.imageUrl)
+        setName(res.profileObj.name)
+        setEmail(res.profileObj.email)
+
+        // return( alert(`welcome ${res.profileObj.imageUrl}.`) ) 
+        // refreshTokenSetup(res); 
+    }
+    
+    const onFailure = (res) => { 
+        console.log("Login failed: res:", res); 
+        // alert( `Failed to login. ` );
+   };
+
+
     return (
         <>
-
-
 
     <Head>
         <link
@@ -36,13 +62,15 @@ const Navbar = () => {
                         </Button> */}
 
                             <HStack spacing={3} alignItems="center">
-                                <InputGroup display={{ base: "none", lg: "block" }} ml="auto">
+                                {/* <InputGroup display={{ base: "none", lg: "block" }} ml="auto">
                                     <InputLeftElement
                                     pointerEvents="none"
                                     children={<Search2Icon />}
                                     />
                                     <Input type="tel" placeholder="Search..." />
-                                </InputGroup>
+                                </InputGroup> */}
+                                    
+
                             </HStack>
                     </Box>
 
@@ -53,18 +81,34 @@ const Navbar = () => {
 
 
                     <Box bgColor="" pt="2" mr='2'>
-                      <Menu>
-                        <DarkModeSwitch/> 
+                      <Menu>    
+                        {!email === null ?
+
+                        <Avatar                    
+                            size="md"
+                            src={img}
+                            alt={name}
+                            />
+                            :
+                            " "
+                        }
+                          
+                        {/* <DarkModeSwitch/>  */}
                             <MenuButton
+                                outline="none"
+                                borderWidth="0px"
                                 as={IconButton}
                                 aria-label="Options"
-                                icon={<HamburgerIcon borderWidth="0px" />}
+                                icon={ !email == "" ? <Avatar src={img} name={name} />  : <HamburgerIcon borderWidth="0px" bgColor="" />}
                                 variant="outline"
+                                outline="none"
+                                
+                                _hover={{borderWidth :"0px"},{outline:"none"}}
                                 ml="2"
                             />
                             <MenuList>
 
-                                <MenuItem minH="48px">
+                                {/* <MenuItem minH="48px">
                                     <Image
                                         boxSize="2rem"
                                         borderRadius=""
@@ -74,6 +118,7 @@ const Navbar = () => {
                                     />
                                     <span>Register </span>
                                     </MenuItem>
+
                                     <MenuItem minH="40px">
                                         <Image
                                             boxSize="2rem"
@@ -93,18 +138,42 @@ const Navbar = () => {
                                         mr="12px"
                                     />
                                     <span>Portfolio </span>
-                                    </MenuItem>
-                                    {/* <MenuItem minH="40px">
-                                        <Image
-                                            boxSize="2rem"
-                                            borderRadius="full"
-                                            src="https://placekitten.com/120/120"
-                                            alt="Simon the pensive"
-                                            mr="12px"
-                                        />
-                                    <span>Home</span>
                                     </MenuItem> */}
 
+                                { !email == "" ?
+
+                                    <MenuItem minH="40px">
+                                        {/* <Image
+                                            boxSize="2rem"
+                                            borderRadius="full"
+                                            src={img}
+                                            alt={name}
+                                            mr="12px"
+                                        /> */}
+
+                                    
+                                    <Avatar
+                                        size="sm"
+                                        name={name}
+                                        src={img}
+                                    />
+                                    <span style={{paddingLeft: "5px"}}>{name}</span>
+                                    </MenuItem>
+                                    :
+                                    <MenuItem minH="40px">
+                                        <GoogleLogin 
+                                            
+                                            clientId={clientId} 
+                                            buttonText="Login" 
+                                            onSuccess={onSuccess}
+                                            onFailure={onFailure} 
+                                            cookiePolicy={"single_host_origin"} 
+                                            style={{ marginTop: "100px" }} 
+                                            isSignedIn={false} 
+                                            type="dark"
+                                        /> 
+                                    </MenuItem>
+                                }
                                 </MenuList>
                                 
                         </Menu>

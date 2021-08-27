@@ -288,7 +288,7 @@ function onChangeOption(e){
                             <Box minW="4"   style={{display: `${isLargerThan ? "block" : "none"}`}}>#</Box>
                         </Box>
 
-                      <Box minW="16" pt="1.5"  pl="2">
+                      <Box minW="16" pt="1.5"  pl="2">  
                         Logo                        
                       </Box>
 {/* ====================================================== */}
@@ -300,9 +300,9 @@ function onChangeOption(e){
                                 <Box   float="left" minW="14"      >Low</Box>
                                 <Box   float="left" minW="14"  >High</Box>
 
-                                <Box   float="left" minW="14"   style={{display: `${isLargerThan ? "block" : "none"}`}} >ATL</Box>
-                                <Box   float="left" minW="14"  style={{display: `${isLargerThan ? "block" : "none"}`}}>ATH</Box>
-                                <Box   float="left" minW="14"  style={{display: `${isLargerThan ? "block" : "none"}`}}>%</Box>
+                                <Box   float="left" minW="14" color="white"   style={{display: `${isLargerThan ? "block" : "none"}`}} >ATL</Box>
+                                <Box   float="left" minW="14" color="white"  style={{display: `${isLargerThan ? "block" : "none"}`}}>ATH</Box>
+                                <Box   float="left" minW="14" color="white"  style={{display: `${isLargerThan ? "block" : "none"}`}}>%</Box>
                                 <Box   float="left" minW="14"  >Price</Box>
                                 <Box   float="left" minW="14" cursor="wait" > Add </Box>
                                 
