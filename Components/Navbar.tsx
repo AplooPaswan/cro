@@ -99,7 +99,7 @@ const Navbar = () => {
                                 borderWidth="0px"
                                 as={IconButton}
                                 aria-label="Options"
-                                icon={ !email == "" ? <Avatar src={img} name={name} />  : <HamburgerIcon borderWidth="0px" bgColor="" />}
+                                icon={ email !== "" ? <Avatar src={img} name={name} />  : <HamburgerIcon borderWidth="0px" bgColor="" />}
                                 variant="outline"
                                 outline="none"
                                 
@@ -140,7 +140,7 @@ const Navbar = () => {
                                     <span>Portfolio </span>
                                     </MenuItem> */}
 
-                                { !email == "" ?
+                                { email !== "" ?
 
                                     <MenuItem minH="40px">
                                         {/* <Image
