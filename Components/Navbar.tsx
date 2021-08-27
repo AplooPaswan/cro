@@ -102,8 +102,6 @@ const Navbar = () => {
                                 icon={ email !== "" ? <Avatar src={img} name={name} />  : <HamburgerIcon borderWidth="0px" bgColor="" />}
                                 variant="outline"
                                
-                                
-                                _hover={{borderWidth :"0px"},{outline:"none"}}
                                 ml="2"
                             />
                             <MenuList>
