@@ -31,7 +31,7 @@ const Navbar = () => {
       
 
         return( 
-           // alert(`welcome ${res.profileObj.imageUrl}.`) 
+            alert(`welcome ${res.profileObj.imageUrl}.`) 
             
             
         ) 
