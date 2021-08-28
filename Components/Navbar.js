@@ -2,7 +2,7 @@ import { AddIcon, ChevronDownIcon, EditIcon, ExternalLinkIcon, HamburgerIcon, Re
 import { Avatar, Box, Button, Flex, HStack, Image, Input, InputGroup, InputLeftElement, Menu, MenuButton, MenuItem, MenuList, Spacer, Stack, Text } from '@chakra-ui/react'
 import { IconButton } from "@chakra-ui/react"
 import DarkModeSwitch from './DarkModeSwitch'
-import Inr from '../img/INR.svg'
+
 import Head from 'next/head'
 import React from "react"; import { GoogleLogin, useGoogleLogin } from "react-google-login";
 import { useGoogleLogout } from 'react-google-login';

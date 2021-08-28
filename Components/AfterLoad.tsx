@@ -2,7 +2,6 @@ import { Box, Heading, Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui
 import React, {Suspense, useEffect, useState} from 'react'
 import FadeIn from 'react-fade-in'
 import useFetch from 'use-http'
-import Demo from './Demo'
 import Loader from './Skeleton'
 import TopSlide from './TopSlide'
 

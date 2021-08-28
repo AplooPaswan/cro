@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "Components/Top100.js"  ],
+, "Components/Top100.js", "Components/Navbar.js"  ],
   "exclude": [
     "node_modules"
   ]
