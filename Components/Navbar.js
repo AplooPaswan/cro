@@ -23,7 +23,7 @@ const Navbar = () => {
     const onSuccess = (res) => { 
 
         refreshTokenSetup(res);
-        console.log("Login Success: currentUser:", res.profileObj.tokenId); 
+        //console.log("Login Success: currentUser:", res.profileObj.tokenId); 
 
         setImg(res.profileObj.imageUrl)
         setName(res.profileObj.name)
@@ -31,7 +31,7 @@ const Navbar = () => {
       
 
         return( 
-            alert(`welcome ${res.profileObj.imageUrl}.`) 
+           // alert(`welcome ${res.profileObj.imageUrl}.`) 
             
             
         ) 
