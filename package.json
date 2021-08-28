@@ -16,11 +16,13 @@
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "emotion-theming": "^11.0.0",
+    "firebase": "^9.0.0",
     "framer-motion": "^4.1.17",
     "next": "11.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-fade-in": "^2.0.1",
+    "react-firebase-hooks": "^3.0.4",
     "react-google-login": "^5.2.2",
     "use-http": "^1.0.23"
   },
