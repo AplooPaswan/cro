@@ -10,10 +10,14 @@ import AfterLoad from './AfterLoad'
 
 const TopSlide = (card) => {
 
-
+    
     function AmtFormat(x){
         
-        return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+        return(       
+             
+             x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+             
+        )
     }
 
     const [isLargerThan] = useMediaQuery("(min-width: 900px)")
@@ -156,7 +160,7 @@ function onChangeOption(e){
 
 
 
-{ card &&  card?.card?.map((cards,index)=>(
+{ card &&  card?.card?.map((cards,index)=> index < 10 && (
     
     // console.log(cards);
 
@@ -191,7 +195,11 @@ function onChangeOption(e){
                             
                         </Box>
                         <Box justifyContent="center">
-                            <Text fontSize="2xl" color="gray" textTransform="uppercase" fontWeight="bold">( {cards.symbol} )</Text>
+                            <Flex color="gray">
+                                <Text fontSize="2xl"  textTransform="uppercase" fontWeight="bold">
+                                    ( {cards.symbol} )
+                                </Text>&nbsp; #{cards.market_cap_rank}
+                            </Flex>
                             <Text color="orange">$ {AmtFormat(`${cards.low_24h}`)}</Text>
                             <Text color="red" >$ {AmtFormat(`${cards.high_24h}`)}</Text>
                             

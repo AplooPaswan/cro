@@ -1,5 +1,5 @@
 import { AddIcon, ChevronDownIcon, EditIcon, ExternalLinkIcon, HamburgerIcon, RepeatIcon, Search2Icon, SearchIcon, SunIcon, ViewIcon } from '@chakra-ui/icons'
-import { Avatar, Box, Button, Flex, HStack, Image, Input, InputGroup, InputLeftElement, Menu, MenuButton, MenuItem, MenuList, Spacer, Stack, Text } from '@chakra-ui/react'
+import { Avatar, Box, Button, Flex, HStack, Icon, Image, Input, InputGroup, InputLeftElement, Menu, MenuButton, MenuItem, MenuList, Spacer, Stack, Text } from '@chakra-ui/react'
 import { IconButton } from "@chakra-ui/react"
 import DarkModeSwitch from './DarkModeSwitch'
 
@@ -16,6 +16,8 @@ const clientId ="427283001518-7r1m5ubnjjqh46neaaehg39f6eobgka0.apps.googleuserco
 
 const Navbar = () => {
 
+    const [currnecy,setCurrnecy] = useState("");
+
     const [img,setImg] = useState("");
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
@@ -29,12 +31,6 @@ const Navbar = () => {
         setName(res.profileObj.name)
         setEmail(res.profileObj.email)
       
-
-        return( 
-            alert(`welcome ${res.profileObj.imageUrl}.`) 
-            
-            
-        ) 
          refreshTokenSetup(res); 
          
     }
@@ -64,7 +60,7 @@ const Navbar = () => {
         setName("")
         setEmail("")
         res=""
-    alert('Logged out Successfully ✌');
+    // alert('Logged out Successfully ✌');
   };
 
   const { signOut } = useGoogleLogout({
@@ -97,31 +93,7 @@ const Navbar = () => {
                         <img src="https://www.linkpicture.com/q/aploo.png" alt="img" height="2px" width="120px" />
                     </Box>
 
-
-                    <Box bgColor="" pt="2">
-                        {/* <Button colorScheme="teal" variant="outline">
-                            Button
-                        </Button> */}
-
-                            <HStack spacing={3} alignItems="center">
-                                {/* <InputGroup display={{ base: "none", lg: "block" }} ml="auto">
-                                    <InputLeftElement
-                                    pointerEvents="none"
-                                    children={<Search2Icon />}
-                                    />
-                                    <Input type="tel" placeholder="Search..." />
-                                </InputGroup> */}
-                                    
-
-                            </HStack>
-                    </Box>
-
-
-                    <Box bgColor="" pt="2">
-                            {/* <DarkModeSwitch/> */}
-                    </Box>
-
-
+                
                     <Box bgColor="" pt="2" mr='2'>
                       <Menu>    
                         {!email === null ?
@@ -142,51 +114,20 @@ const Navbar = () => {
                                 as={IconButton}
                                 aria-label="Options"
                                 icon={ email !== "" ? <Avatar src={img} name={name} />  : <HamburgerIcon borderWidth="0px" bgColor="" />}
-                                variant="outline"
-                                _hover={{borderColor:"rgb(6,17,33)"},{borderWidth:"0px"},{borderStyle:"none"}}
+                                
+                                bgColor="transparent"
+                                _hover={{borderColor:"rgb(6,17,33)"}}
 
                                 ml="2"
                             />
-                            <MenuList bgColor="rgb(6,17,33)">
-
-                                {/* <MenuItem minH="48px">
-                                    <Image
-                                        boxSize="2rem"
-                                        borderRadius=""
-                                        src="https://www.linkpicture.com/q/userUser.svg"
-                                        alt="Register"
-                                        mr="12px"
-                                    />
-                                    <span>Register </span>
-                                    </MenuItem>
-
-                                    <MenuItem minH="40px">
-                                        <Image
-                                            boxSize="2rem"
-                                            borderRadius="full"
-                                            src="https://www.linkpicture.com/q/login.svg"
-                                            alt="LogIn"
-                                            mr="12px"
-                                        />
-                                    <span>LogIn</span>
-                                    </MenuItem>
-                                    <MenuItem minH="48px">
-                                    <Image
-                                        boxSize="2rem"
-                                        borderRadius="full"
-                                        src="https://www.linkpicture.com/q/inr.svg"
-                                        alt="$"
-                                        mr="12px"
-                                    />
-                                    <span>Portfolio </span>
-                                    </MenuItem> */}
+                            <MenuList bgColor="rgb(6,17,33)" _hover={{backgroundColor:'rgb(6,17,33)'}}>
 
                                 { email !== "" ?
 
-                                    <MenuItem minH="40px" _hover={{backgroundColor: "rgb(6,17,33)"}} m="0">
+                                <MenuItem minH="40px" bgColor="rgb(6,17,33)" _hover={{backgroundColor: "rgb(6,17,33)"}} m="0">
                                        
-                                    <Box w="full" cursor="default" bgColor="rgb(6,17,33)" m="0">
-                                        <Flex justifyContent="center" bgColor="">
+                                    <Box w="full" cursor="default" bgColor="rgb(6,17,33)" m="0"  _hover={{backgroundColor:'rgb(6,17,33)'}}>
+                                        <Flex justifyContent="center" bgColor="rgb(6,17,33)" _hover={{backgroundColor:'rgb(6,17,33)'}}>
                                            
                                             <Box>
                                                 <Avatar
@@ -203,9 +144,32 @@ const Navbar = () => {
                                             </Box>
                                         </Flex>
                                         <br/>
-                                        <Flex>
-                                            <Button onClick={signOut}>Sign Out </Button> 
+                                        <Flex bgColor="rgb(6,17,33)" _hover={{backgroundColor:"rgb(6,17,33)"}}>
+                                                <Button
+                                                onClick={signOut}
+                                                py={2}
+                                                w="full"
+                                                colorScheme="blue"
+                                                leftIcon={
+                                                <Icon
+                                                    mr={1}
+                                                    aria-hidden="true"
+                                                    boxSize={6}
+                                                    viewBox="0 0 24 24"
+                                                    fill="currentColor"
+                                                    stroke="transparent"
+                                                    strokeWidth="2"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                >
+                                                    <path d="M20.283,10.356h-8.327v3.451h4.792c-0.446,2.193-2.313,3.453-4.792,3.453c-2.923,0-5.279-2.356-5.279-5.28	c0-2.923,2.356-5.279,5.279-5.279c1.259,0,2.397,0.447,3.29,1.178l2.6-2.599c-1.584-1.381-3.615-2.233-5.89-2.233	c-4.954,0-8.934,3.979-8.934,8.934c0,4.955,3.979,8.934,8.934,8.934c4.467,0,8.529-3.249,8.529-8.934	C20.485,11.453,20.404,10.884,20.283,10.356z" />
+                                                </Icon>
+                                                }
+                                            >
+                                                SignOut
+                                            </Button>
                                         </Flex>
+                                        
 
 
                                         
@@ -215,18 +179,51 @@ const Navbar = () => {
                                     
                                     </MenuItem>
                                     :
-                                    <MenuItem minH="40px" cursor="default">
-                                        {/* <GoogleLogin
-                                            clientId={clientId}
-                                            buttonText="Login"
-                                            onSuccess={onSuccess}
-                                            onFailure={onFailure}
-                                            cookiePolicy={'single_host_origin'}
-                                            style={{ marginTop: '100px' }}
-                                            isSignedIn={true}
-                                        /> */}
-                                        <Button  onClick={signIn}>Login </Button> 
+                                    <>
+                                    <MenuItem minH="40px" cursor="default" bgColor="rgb(6,17,33)" _hover={{backgroundColor:"rgb(6,17,33)"}}>  
+                                            <Box w="full"><Button  >₹ - INR</Button></Box>
                                     </MenuItem>
+
+                                    <MenuItem minH="40px" cursor="default" bgColor="rgb(6,17,33)" _hover={{backgroundColor:"rgb(6,17,33)"}}>
+
+                                        <Flex pt="2" justifyContent="">                                          
+                                            <Box><Button >$ - USDT</Button></Box>
+                                        </Flex>
+                                    </MenuItem>
+
+                                    <MenuItem minH="40px" cursor="default" bgColor="rgb(6,17,33)" _hover={{backgroundColor:"rgb(6,17,33)"}}>
+                                     
+                                    <Flex  py={2} >
+                                    <Button
+                                        onClick={signIn}
+                                        py={2}
+                                        w="full"
+                                        colorScheme="green"
+                                        leftIcon={
+                                        <Icon
+                                            mr={1}
+                                            aria-hidden="true"
+                                            boxSize={6}
+                                            viewBox="0 0 24 24"
+                                            fill="currentColor"
+                                            stroke="transparent"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        >
+                                            <path d="M20.283,10.356h-8.327v3.451h4.792c-0.446,2.193-2.313,3.453-4.792,3.453c-2.923,0-5.279-2.356-5.279-5.28	c0-2.923,2.356-5.279,5.279-5.279c1.259,0,2.397,0.447,3.29,1.178l2.6-2.599c-1.584-1.381-3.615-2.233-5.89-2.233	c-4.954,0-8.934,3.979-8.934,8.934c0,4.955,3.979,8.934,8.934,8.934c4.467,0,8.529-3.249,8.529-8.934	C20.485,11.453,20.404,10.884,20.283,10.356z" />
+                                        </Icon>
+                                        }
+                                    >
+                                        Login with Google
+                                    </Button>
+                                    </Flex>
+
+                                    </MenuItem>
+
+                                    
+                                    </>
+                                    
                                 }
                                 </MenuList>
                                 
