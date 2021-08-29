@@ -86,7 +86,7 @@ const Navbar = () => {
         </title>
     </Head>
             
-            <Stack bgColor="blackAlpha.100" justifyContent="space-around" borderBottomWidth="">
+            <Stack  justifyContent="space-around" borderBottomWidth="">
                 
                 <Flex pt="2" pb="2" justifyContent="space-between" bgColor="">
                     <Box bgColor="">
@@ -108,43 +108,50 @@ const Navbar = () => {
                         }
                           
                         <DarkModeSwitch/> 
+
                             <MenuButton
                                 outline="none"
                                 borderWidth="0px"
                                 as={IconButton}
                                 aria-label="Options"
-                                icon={ email !== "" ? <Avatar src={img} name={name} />  : <HamburgerIcon borderWidth="0px" bgColor="" />}
+                                icon={ email !== "" ? <Avatar src={img} name={name} />  : <HamburgerIcon borderWidth="0px"  />}
                                 
-                                bgColor="transparent"
-                                _hover={{borderColor:"rgb(6,17,33)"}}
+                                
+                                _hover={{borderColor:'rgb(6,17,33)'}}
 
                                 ml="2"
                             />
-                            <MenuList bgColor="rgb(6,17,33)" _hover={{backgroundColor:'rgb(6,17,33)'}}>
+                            <MenuList  _hover={{backgroundColor:'rgb(6,17,33)'}}>
 
                                 { email !== "" ?
 
-                                <MenuItem minH="40px" bgColor="rgb(6,17,33)" _hover={{backgroundColor: "rgb(6,17,33)"}} m="0">
+                                <MenuItem minH="40px"  bgColor="transparent" _hover={{backgroundColor: "rgb(6,17,33)"}} m="0">
                                        
-                                    <Box w="full" cursor="default" bgColor="rgb(6,17,33)" m="0"  _hover={{backgroundColor:'rgb(6,17,33)'}}>
-                                        <Flex justifyContent="center" bgColor="rgb(6,17,33)" _hover={{backgroundColor:'rgb(6,17,33)'}}>
-                                           
-                                            <Box>
-                                                <Avatar
-                                                size="md"
+                                    <Box w="full" cursor="default" bgColor="" m="0" justifyContent="center" _hover={{backgroundColor:'rgb(6,17,33)'}}>
+                                        <Flex justifyContent="center">
+                                            <Avatar
+                                                size="lg"
                                                 name={name}
                                                 src={img}
-                                                />
-                                            </Box>
+                                            />
+                                        </Flex>
+                                        <Flex justifyContent="center" bgColor="" _hover={{backgroundColor:'rgb(6,17,33)'}}>
+                                                <Box bgColor="">
+                                                    {/* <Avatar
+                                                    size="md"
+                                                    name={name}
+                                                    src={img}
+                                                    /> */}
+                                                </Box>
 
-                                            <Box pl="2" justifyContent="center" fontWeight="bold" textTransform="capitalize">
-                                                <Flex><Text color="white">{name}</Text></Flex>
-                                                <Flex><Text color="GrayText">{email}</Text></Flex>
-                                                
-                                            </Box>
+                                                <Box justifyContent="center" fontWeight="bold" textTrans>
+                                                    <Flex justifyContent="center"><Text color="white" form="capitalize">{name}</Text></Flex>
+                                                    <Flex justifyContent="center"><Text color="GrayText">{email}</Text></Flex>
+                                                    
+                                                </Box>
                                         </Flex>
                                         <br/>
-                                        <Flex bgColor="rgb(6,17,33)" _hover={{backgroundColor:"rgb(6,17,33)"}}>
+                                        <Flex  _hover={{backgroundColor:"rgb(6,17,33)"}}>
                                                 <Button
                                                 onClick={signOut}
                                                 py={2}
@@ -169,29 +176,28 @@ const Navbar = () => {
                                                 SignOut
                                             </Button>
                                         </Flex>
-                                        
-
-
-                                        
+     
                                     </Box>
                                     
-                                    
-                                    
+                        
                                     </MenuItem>
                                     :
                                     <>
-                                    <MenuItem minH="40px" cursor="default" bgColor="rgb(6,17,33)" _hover={{backgroundColor:"rgb(6,17,33)"}}>  
+                                    <MenuItem minH="40px" cursor="default"  _hover={{backgroundColor:"rgb(6,17,33)"}}>  
+                                            <Box w="full" fontWeight="bold" fontSize="md">Profile</Box>
+                                    </MenuItem>
+                                    <MenuItem minH="40px" cursor="default"  _hover={{backgroundColor:"rgb(6,17,33)"}}>  
                                             <Box w="full"><Button  >₹ - INR</Button></Box>
                                     </MenuItem>
 
-                                    <MenuItem minH="40px" cursor="default" bgColor="rgb(6,17,33)" _hover={{backgroundColor:"rgb(6,17,33)"}}>
+                                    <MenuItem minH="40px" cursor="default"  _hover={{backgroundColor:"rgb(6,17,33)"}}>
 
                                         <Flex pt="2" justifyContent="">                                          
                                             <Box><Button >$ - USDT</Button></Box>
                                         </Flex>
                                     </MenuItem>
 
-                                    <MenuItem minH="40px" cursor="default" bgColor="rgb(6,17,33)" _hover={{backgroundColor:"rgb(6,17,33)"}}>
+                                    <MenuItem minH="40px" cursor="default"  _hover={{backgroundColor:"rgb(6,17,33)"}}>
                                      
                                     <Flex  py={2} >
                                     <Button

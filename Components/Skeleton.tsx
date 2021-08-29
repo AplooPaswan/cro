@@ -52,8 +52,6 @@ const Loader = () => {
         <Spacer/>
 
         <Stack bgColor="" p="" mt="10"   >
-
-
             <Flex>
                 <Box w="0.5">
                     <SkeletonCircle size="14"  />   

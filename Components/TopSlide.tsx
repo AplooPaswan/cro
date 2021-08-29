@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import { AspectRatio, Box, Button, Flex, FormControl, FormLabel, HStack, Image, Menu, MenuButton, MenuItem, MenuList, Select, Spacer, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Text, VStack } from '@chakra-ui/react'
+import { AspectRatio, Box, Button, Flex, FormControl, FormLabel, HStack, Image, Input, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Spacer, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useDisclosure, VStack } from '@chakra-ui/react'
 import { useBreakpointValue } from "@chakra-ui/react"
 import { useMediaQuery } from "@chakra-ui/react"
 import React,{ useState,useEffect } from 'react'
@@ -20,6 +20,13 @@ const TopSlide = (card) => {
         )
     }
 
+
+    // Adding new port ===============================================
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const initialRef = React.useRef()
+    const finalRef = React.useRef()
+    // End 
+
     const [isLargerThan] = useMediaQuery("(min-width: 900px)")
 
     const url="https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=7d"
@@ -27,54 +34,6 @@ const TopSlide = (card) => {
     const url2="https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false&price_change_percentage=7d"
 
     const [coin, setCoin] = useState([]);
-    // const [card, setCard] = useState([]);
-
-
-
-    
-    // async function getData() {
-    
-    //     const response = await fetch(url);
-    //     const response2 = await fetch(url2);
-    
-    //     const data = await response.json();
-    //     setCoin(data);
-
-    //     const data2 = await response2.json();
-    //     setCard(data2);
-
-    //     console.log(coin);
-    // }
-    
-    // useEffect(() => {
-    
-    //     getData();
-        
-        
-    // }, []);
-
-
-
-
-    // console.log(data)
-
-    // useEffect(()=>{
-    //     setCard(data)
-    // },[data])
-
-    // useEffect(()=>{
-    //     if(loading){
-    //         localStorage.setItem("loading","true")
-    //     }
-    //     if(!loading){
-    //         localStorage.setItem("loading","false")
-    //     }
-    // },[loading])
-
-
-
-    // console.log(card?.card)
-
 
 const router = useRouter()
 
@@ -147,12 +106,13 @@ function onChangeOption(e){
             sx={{
                 '&::-webkit-scrollbar': {
                   width: '8px',
+                  height:'5px',
                   borderRadius: '2px',
-                  backgroundColor: `bg`,
+                  backgroundColor: `gray`,
                 //   backgroundColor: `rgba(0, 0, 0, 0.05)`,
                 },
                 '&::-webkit-scrollbar-thumb': {
-                    backgroundColor: `bg`,
+                    backgroundColor: `gray`,
                 //   backgroundColor: `rgba(0, 0, 0, 0.05)`,
                 },
               }}
@@ -169,12 +129,12 @@ function onChangeOption(e){
                     minW="sm" maxW="400px" maxH="200px" 
                     p="2" 
                     fontWeight="bold"
-                    borderWidth="" 
+                    borderWidth="1px" 
                     overflow="hidden"
-                    boxShadow="sm"
+                    boxShadow="md"
                     cursor="pointer"
                     key={index}
-                    bgColor="rgb(6,17,33)"
+                    
                     
                 >
                    <Flex justify="space-evenly" >
@@ -289,7 +249,7 @@ function onChangeOption(e){
 
 <Box overflow="auto" mb={1} borderWidth="0px" borderRadius="1px" >
 
-    <Flex  py="2" pt="1.5" pb="2.5"  fontWeight="semibold" bgColor="gray.800" color="GrayText">
+    <Flex  py="2" pt="1.5" pb="2.5"  fontWeight="semibold"  color="GrayText" boxShadow="md">
 
 {/* ========================================= */}
                         <Box maxW="14" pt="1.5" >
@@ -305,8 +265,8 @@ function onChangeOption(e){
                           <Flex justifyContent='space-between' >
                                
                                 <Box   minW="14"   style={{display: `${isLargerThan ? "block" : "none"}`}}>Name</Box>
-                                <Box   float="left" minW="14"      >Low</Box>
-                                <Box   float="left" minW="14"  >High</Box>
+                                <Box   float="left" minW="14"      >24H Low</Box>
+                                <Box   float="left" minW="14"  >24H High</Box>
 
                                 <Box   float="left" minW="14" color="white"   style={{display: `${isLargerThan ? "block" : "none"}`}} >ATL</Box>
                                 <Box   float="left" minW="14" color="white"  style={{display: `${isLargerThan ? "block" : "none"}`}}>ATH</Box>
@@ -324,8 +284,8 @@ function onChangeOption(e){
 
 {card && card?.card?.map((rows,index)=>(
 
-<Box overflow="auto" cursor="pointer" key={index} mb={1} borderWidth="" borderRadius="2px" bgColor="rgb(6,17,33)" fontWeight="bold">
-    <Flex  py="2" _hover={{backgroundColor:"black"}}>
+<Box overflow="auto" cursor="default" key={index} mb={1} borderWidth="0px" boxShadow="md" borderRadius="2px"  fontWeight="bold" >
+    <Flex  py="2" _hover={{backgroundColor:"rgb(6,17,33)"}}>
         <Box maxW="6" mr="2" style={{display: `${isLargerThan ? "block" : "none"}`}}>
                             <Box minW="24" color="gray" style={{display: `${isLargerThan ? "block" : "none"}`}} >#{rows.market_cap_rank}</Box>
         </Box>
@@ -345,7 +305,7 @@ function onChangeOption(e){
                 <Box   float="left" minW="20" color=""  style={{display: `${isLargerThan ? "block" : "none"}`}}>$ {AmtFormat(`${rows.ath}`)}</Box>
                 <Box   float="left" minW="20" color="" style={{display: `${isLargerThan ? "block" : "none"}`}}>{rows.market_cap_change_percentage_24h}</Box>
                 <Box   float="left" minW="20"  color="green" fontWeight="extrabold" >$ {AmtFormat(`${rows.current_price}`)}</Box>
-                <Box   float="left" minW="10"  > <Box as="button" borderColor="white">+</Box> </Box>
+                <Box   float="left" minW="10"  > <Button as="button" cursor="pointer" mt="-1.5" mr="3" onClick={onOpen}>+</Button> </Box>
             </Flex>                          
         </Box>
 
@@ -355,6 +315,49 @@ function onChangeOption(e){
     }
         
       </Stack>
+
+
+{/* ============Adding pop up ============================ */}
+
+{/* <Button ml={4} ref={finalRef}>
+        I'll receive focus on close
+</Button> */}
+
+      <Modal
+        initialFocusRef={initialRef}
+        finalFocusRef={finalRef}
+        isOpen={isOpen}
+        onClose={onClose}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Add  to your portfolio</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+          
+            <FormControl>
+              <FormLabel>Quantity</FormLabel>
+              <Input isRequired ref={initialRef} placeholder="Total Amount of quantity" />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Amount in $</FormLabel>
+              <Input isRequired placeholder="Total $ " />
+            </FormControl>
+            <FormControl mt={4}>
+              <FormLabel>Price</FormLabel>
+              <Input isRequired placeholder="Buying price" />
+            </FormControl>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3}>
+              Save
+            </Button>
+            <Button onClick={onClose}>Cancel</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
 
 </>
     )
