@@ -25,7 +25,7 @@ const Navbar = () => {
     const onSuccess = (res) => { 
 
         refreshTokenSetup(res);
-        console.log("Login Success: currentUser:", res.profileObj.tokenId); 
+        //console.log("Login Success: currentUser:", res.profileObj.tokenId); 
 
         setImg(res.profileObj.imageUrl)
         setName(res.profileObj.name)
