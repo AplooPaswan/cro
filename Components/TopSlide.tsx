@@ -131,7 +131,7 @@ function onChangeOption(e){
                     fontWeight="bold"
                     borderWidth="1px" 
                     overflow="hidden"
-                    boxShadow="md"
+                    boxShadow=""
                     cursor="pointer"
                     key={index}
                     
@@ -284,7 +284,7 @@ function onChangeOption(e){
 
 {card && card?.card?.map((rows,index)=>(
 
-<Box overflow="auto" cursor="default" key={index} mb={1} borderWidth="0px" boxShadow="" borderRadius="2px"  fontWeight="bold" >
+<Box overflow="auto" cursor="default" key={index} mb={1} borderWidth="0px" boxShadow="sm" borderRadius="2px"  fontWeight="bold" >
     <Flex  py="2" _hover={{backgroundColor:"rgb(6,17,33)"}}>
         <Box maxW="6" mr="2" style={{display: `${isLargerThan ? "block" : "none"}`}}>
                             <Box minW="24" color="gray" style={{display: `${isLargerThan ? "block" : "none"}`}} >#{rows.market_cap_rank}</Box>
