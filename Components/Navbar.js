@@ -1,4 +1,4 @@
-import { AddIcon, ChevronDownIcon, EditIcon, ExternalLinkIcon, HamburgerIcon, RepeatIcon, Search2Icon, SearchIcon, SunIcon, ViewIcon } from '@chakra-ui/icons'
+import { AddIcon, ChevronDownIcon, EditIcon, ExternalLinkIcon, HamburgerIcon, RepeatClockIcon, RepeatIcon, Search2Icon, SearchIcon, SunIcon, ViewIcon } from '@chakra-ui/icons'
 import { Avatar, Box, Button, Flex, HStack, Icon, Image, Input, InputGroup, InputLeftElement, Menu, MenuButton, MenuItem, MenuList, Spacer, Stack, Text } from '@chakra-ui/react'
 import { IconButton } from "@chakra-ui/react"
 import DarkModeSwitch from './DarkModeSwitch'
@@ -12,6 +12,7 @@ import { refreshTokenSetup } from './Auth/refreshToken'
 import Logout from './Auth/Logout'
 import head from 'next/head'
 import "../img/google.png"
+import CoinChange from './CoinChange'
 const clientId ="427283001518-7r1m5ubnjjqh46neaaehg39f6eobgka0.apps.googleusercontent.com"; 
 
 const Navbar = () => {
@@ -82,7 +83,7 @@ const Navbar = () => {
           rel="stylesheet"
         />
         <title>
-          Welcome : {name}
+          Welcome :)
         </title>
     </Head>
             
@@ -106,12 +107,15 @@ const Navbar = () => {
                             :
                             " "
                         }
-                          
+                        <Box  as={RepeatClockIcon} minH={6} />  &nbsp;
                         <DarkModeSwitch/> 
 
+{/* ================================================================================================================= */}
                             <MenuButton
+                                bgColor="transparent"
                                 outline="none"
                                 borderWidth="0px"
+                                borderRadius="full"
                                 as={IconButton}
                                 aria-label="Options"
                                 icon={ email !== "" ? <Avatar src={img} name={name} />  : <HamburgerIcon borderWidth="0px"  />}
@@ -121,16 +125,16 @@ const Navbar = () => {
 
                                 ml="2"
                             />
-                            <MenuList  _hover={{backgroundColor:'rgb(6,17,33)'}}>
+                            <MenuList  _hover={{backgroundColor:'rgb(6,17,33)'}} bgColor="">
 
                                 { email !== "" ?
 
-                                <MenuItem minH="40px"  bgColor="transparent" _hover={{backgroundColor: "rgb(6,17,33)"}} m="0">
+                                <Box minH="40px"  bgColor="transparent" _hover={{backgroundColor: "rgb(6,17,33)"}} m="0" p="4" >
                                        
                                     <Box w="full" cursor="default" bgColor="" m="0" justifyContent="center" _hover={{backgroundColor:'rgb(6,17,33)'}}>
                                         <Flex justifyContent="center">
                                             <Avatar
-                                                size="lg"
+                                                size="4"
                                                 name={name}
                                                 src={img}
                                             />
@@ -145,9 +149,12 @@ const Navbar = () => {
                                                 </Box>
 
                                                 <Box justifyContent="center" fontWeight="bold" textTrans>
-                                                    <Flex justifyContent="center"><Text color="white" form="capitalize">{name}</Text></Flex>
-                                                    <Flex justifyContent="center"><Text color="GrayText">{email}</Text></Flex>
-                                                    
+                                                    <Flex justifyContent="center"><Text form="capitalize"> {name}  </Text></Flex>
+                                                    <Flex justifyContent="center"><Text color="GrayText">  {email} </Text></Flex>
+                                                    <Head>
+                                                        <title> {name} </title>
+                                                        <link rel="icon" href={img} sizes="16x16" type="image/png" />
+                                                    </Head>
                                                 </Box>
                                         </Flex>
                                         <br/>
@@ -175,27 +182,27 @@ const Navbar = () => {
                                             >
                                                 SignOut
                                             </Button>
+                                           
+                                        </Flex>
+                                        <Spacer/>  <br/>      
+                                        <Flex>
+                                            <CoinChange/>
                                         </Flex>
      
                                     </Box>
                                     
                         
-                                    </MenuItem>
+                                    </Box>
                                     :
                                     <>
                                     <MenuItem minH="40px" cursor="default"  _hover={{backgroundColor:"rgb(6,17,33)"}}>  
                                             <Box w="full" fontWeight="bold" fontSize="md">Profile</Box>
                                     </MenuItem>
-                                    <MenuItem minH="40px" cursor="default"  _hover={{backgroundColor:"rgb(6,17,33)"}}>  
-                                            <Box w="full"><Button  >₹ - INR</Button></Box>
-                                    </MenuItem>
-
-                                    <MenuItem minH="40px" cursor="default"  _hover={{backgroundColor:"rgb(6,17,33)"}}>
-
-                                        <Flex pt="2" justifyContent="">                                          
-                                            <Box><Button >$ - USDT</Button></Box>
+                                    <Box minH="40px" cursor="default"  _hover={{backgroundColor:"rgb(6,17,33)"}}>  
+                                        <Flex pl="3.5">
+                                            <CoinChange/>
                                         </Flex>
-                                    </MenuItem>
+                                    </Box>
 
                                     <MenuItem minH="40px" cursor="default"  _hover={{backgroundColor:"rgb(6,17,33)"}}>
                                      
@@ -222,10 +229,12 @@ const Navbar = () => {
                                         }
                                     >
                                         Login with Google
-                                    </Button>
+                                    </Button>                                  
                                     </Flex>
 
-                                    </MenuItem>
+                                
+
+                                </MenuItem>
 
                                     
                                     </>

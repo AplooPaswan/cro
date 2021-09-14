@@ -6,11 +6,56 @@ import React,{ useState,useEffect } from 'react'
 import {useFetch} from 'use-http'
 import { useRouter } from 'next/router'
 import AfterLoad from './AfterLoad'
+import axios from 'axios'
+import Loader1 from './Skeleton1'
+import Loader2 from './Skeleton2'
 
+const TopSlide = (currency) => {
 
-const TopSlide = (card) => {
+    console.log(currency);
 
+    const [ rows, setRows] = React.useState([]);
+    const [loader, setLoader] = React.useState(false);
+
+    const url="https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h"
+
+    const fetchData = () => {
+
+        setLoader(true);
+        setTimeout(async () => {
+        const response = await axios.get(url);
+
+        setRows(response.data);
+        setLoader(false)
+           
+        }, 3000)
+    }
     
+    useEffect(() => {
+        fetchData();
+        
+    }, []);
+    
+    const Refresh = () => {
+        fetchData();
+    }
+    
+    // const {data,loading} = useFetch(url,[])
+    // // console.log(data)
+    // const card=data
+
+
+{/* ================================================================================== */}
+// End fetch data 
+{/* ================================================================================== */}
+
+    function onChangeOption(e){
+        if (e.detail === 0){
+            console.log(e.target.value);
+           {e.target.value}
+        }
+}
+
     function AmtFormat(x){
         
         return(       
@@ -29,20 +74,9 @@ const TopSlide = (card) => {
 
     const [isLargerThan] = useMediaQuery("(min-width: 900px)")
 
-    const url="https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=7d"
-    
-    const url2="https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false&price_change_percentage=7d"
-
     const [coin, setCoin] = useState([]);
 
-const router = useRouter()
 
-function onChangeOption(e){
-    if (e.detail === 0){
-        console.log(e.target.value);
-        <AfterLoad coinName={e.target.value} />
-    }
-}
      return (
     <>
 
@@ -94,6 +128,7 @@ function onChangeOption(e){
 <Flex justifyContent="">
 {/* <Text fontSize="24">🔥🔥Most popular coin🔥🔥 </Text> */}
 </Flex>
+{/* <Button onClick={Refresh} /> */}
         <Stack 
 
             
@@ -120,10 +155,8 @@ function onChangeOption(e){
 
 
 
-{ card &&  card?.card?.map((cards,index)=> index < 10 && (
+{loader ? <Loader1/> : rows?.map((cards,index)=> index < 10 && (
     
-    // console.log(cards);
-
                 <Box borderRadius="sm"  
                     minH="180px" spacing="10px" 
                     minW="sm" maxW="400px" maxH="200px" 
@@ -156,7 +189,7 @@ function onChangeOption(e){
                         </Box>
                         <Box justifyContent="center">
                             <Flex color="gray">
-                                <Text fontSize="2xl"  textTransform="uppercase" fontWeight="bold">
+                                <Text fontSize="2xl" className="fullName" textTransform="uppercase" fontWeight="bold">
                                     ( {cards.symbol} )
                                 </Text>&nbsp; #{cards.market_cap_rank}
                             </Flex>
@@ -268,9 +301,9 @@ function onChangeOption(e){
                                 <Box   float="left" minW="14"      >24H Low</Box>
                                 <Box   float="left" minW="14"  >24H High</Box>
 
-                                <Box   float="left" minW="14" color="white"   style={{display: `${isLargerThan ? "block" : "none"}`}} >ATL</Box>
-                                <Box   float="left" minW="14" color="white"  style={{display: `${isLargerThan ? "block" : "none"}`}}>ATH</Box>
-                                <Box   float="left" minW="14" color="white"  style={{display: `${isLargerThan ? "block" : "none"}`}}>%</Box>
+                                <Box   float="left" minW="14"    style={{display: `${isLargerThan ? "block" : "none"}`}} >ATL</Box>
+                                <Box   float="left" minW="14"   style={{display: `${isLargerThan ? "block" : "none"}`}}>ATH</Box>
+                                <Box   float="left" minW="14"   style={{display: `${isLargerThan ? "block" : "none"}`}}>%</Box>
                                 <Box   float="left" minW="14"  >Price</Box>
                                 <Box   float="left" minW="14" cursor="wait" > Add </Box>
                                 
@@ -280,32 +313,33 @@ function onChangeOption(e){
     </Flex>
 </Box>
 
-
-
-{card && card?.card?.map((rows,index)=>(
+{ loader ? <Loader2/> : rows?.map((rows,index)=>(
 
 <Box overflow="auto" cursor="default" key={index} mb={1} borderWidth="0px" boxShadow="md" borderRadius="2px"  fontWeight="bold" >
+
     <Flex  py="2" _hover={{backgroundColor:"rgb(6,17,33)"}}>
         <Box maxW="6" mr="2" style={{display: `${isLargerThan ? "block" : "none"}`}}>
-                            <Box minW="24" color="gray" style={{display: `${isLargerThan ? "block" : "none"}`}} >#{rows.market_cap_rank}</Box>
+            <Box minW="24" color="gray" style={{display: `${isLargerThan ? "block" : "none"}`}} >#{rows.market_cap_rank}</Box>
         </Box>
 
         <Box minW="14" bgColor="" pl="1">
-            <Image src={rows.image} alt="" bgColor="white" maxW="8" borderRadius="full" />
+            <Image src={rows.image} alt="" bgColor="white" maxW="10" borderRadius="full" />
             <Spacer/>
-           <Text fontWeight="semibold" fontSize="xs" textTransform="uppercase" pt="1" pl="1" color="GrayText">{rows.symbol}</Text>
+           <Text fontWeight="bold" fontSize="xs" textTransform="uppercase" pt="1" pl="1" color="GrayText">{rows.symbol}</Text>
         </Box>
 
         <Box pt="3" w="full" >
             <Flex justifyContent='space-between' fontWeight="" fontFamily="-moz-initial">
-                <Box   minW="24" color="gray"  style={{display: `${isLargerThan ? "block" : "none"}`}}>{rows.name}</Box>
+                <Box   minW="24" color="gray" overflow="hidden" style={{display: `${isLargerThan ? "block" : "none"}`}}>{rows.name}</Box>
                 <Box   float="left" minW="20" color="red"     >$ {AmtFormat(`${rows.low_24h}`)}</Box>
                 <Box   float="left" minW="20" color="orange"  >$ {AmtFormat(`${rows.high_24h}`)}</Box>
                 <Box   float="left" minW="20" color=""    style={{display: `${isLargerThan ? "block" : "none"}`}} >$ {AmtFormat(`${rows.atl}`)}</Box>
                 <Box   float="left" minW="20" color=""  style={{display: `${isLargerThan ? "block" : "none"}`}}>$ {AmtFormat(`${rows.ath}`)}</Box>
                 <Box   float="left" minW="20" color="" style={{display: `${isLargerThan ? "block" : "none"}`}}>{rows.market_cap_change_percentage_24h}</Box>
                 <Box   float="left" minW="20"  color="green" fontWeight="extrabold" >$ {AmtFormat(`${rows.current_price}`)}</Box>
-                <Box   float="left" minW="10"  > <Button as="button" cursor="pointer" mt="-1.5" mr="3" onClick={onOpen}>+</Button> </Box>
+                <Box   float="left" minW="10"  > 
+                    <Button as="button" cursor="pointer" mt="-1.5" mr="3" onClick={onOpen} >+</Button> 
+                </Box>
             </Flex>                          
         </Box>
 
