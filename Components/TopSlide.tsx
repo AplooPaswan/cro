@@ -315,12 +315,8 @@ const TopSlide = (currency) => {
 
 { loader ? <Loader2/> : rows?.map((rows,index)=>(
 
-<<<<<<< HEAD
 <Box overflow="auto" cursor="default" key={index} mb={1} borderWidth="0px" boxShadow="md" borderRadius="2px"  fontWeight="bold" >
 
-=======
-<Box overflow="auto" cursor="default" key={index} mb={1} borderWidth="0px" boxShadow="sm" borderRadius="2px"  fontWeight="bold" >
->>>>>>> 5c8d77feace56d0cafd50e02b2574270ad7fb5e4
     <Flex  py="2" _hover={{backgroundColor:"rgb(6,17,33)"}}>
         <Box maxW="6" mr="2" style={{display: `${isLargerThan ? "block" : "none"}`}}>
             <Box minW="24" color="gray" style={{display: `${isLargerThan ? "block" : "none"}`}} >#{rows.market_cap_rank}</Box>
