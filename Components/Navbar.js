@@ -87,7 +87,7 @@ const Navbar = () => {
         </title>
     </Head>
             
-            <Stack  justifyContent="space-around" borderBottomWidth="">
+            <Stack  justifyContent="space-around" borderBottomWidth="" boxShadow="sm">
                 
                 <Flex pt="2" pb="2" justifyContent="space-between" bgColor="">
                     <Box bgColor="">
