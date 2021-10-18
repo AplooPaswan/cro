@@ -155,7 +155,7 @@ const TopSlide = (currency) => {
 
 
 
-{loader ? <Loader1/> : rows?.map((cards,index)=> index < 10 && (
+{loader ? <Loader1/> : rows?.map((cards,index)=> index < 100 && (
     
                 <Box borderRadius="sm"  
                     minH="180px" spacing="10px" 
