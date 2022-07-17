@@ -27,7 +27,7 @@ const CoinChange = () => {
                 </MenuButton>
                 <MenuList>
                     <MenuItem onClick={() =>onChangeOption('inr')}> ₹ - INR </MenuItem>
-                    <MenuItem onClick={() =>onChangeOption('usd')}> $- USD  </MenuItem>
+                    <MenuItem onClick={() =>onChangeOption('usd')}> $- USDT  </MenuItem>
                 </MenuList>
                 </>
             )}

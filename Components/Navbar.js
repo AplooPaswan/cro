@@ -1,3 +1,4 @@
+import Aploo from "./aploo.png";
 import { AddIcon, ChevronDownIcon, EditIcon, ExternalLinkIcon, HamburgerIcon, RepeatClockIcon, RepeatIcon, Search2Icon, SearchIcon, SunIcon, ViewIcon } from '@chakra-ui/icons'
 import { Avatar, Box, Button, Flex, HStack, Icon, Image, Input, InputGroup, InputLeftElement, Menu, MenuButton, MenuItem, MenuList, Spacer, Stack, Text } from '@chakra-ui/react'
 import { IconButton } from "@chakra-ui/react"
@@ -71,7 +72,7 @@ const Navbar = () => {
   });
 // for custom btn 
 
-
+console.log(`img location is ${Aploo}`);
 
 
     return (
@@ -91,9 +92,9 @@ const Navbar = () => {
                 
                 <Flex pt="2" pb="2" justifyContent="space-between" bgColor="">
                     <Box bgColor="">
-                        <img src="https://www.linkpicture.com/q/aploo.png" alt="img" height="2px" width="120px" />
+                        <img src="https://i.postimg.cc/Mfk2fmsS/aploo.png" alt="img" height="2px" width="120px" />
                     </Box>
-
+        
                 
                     <Box bgColor="" pt="2" mr='2'>
                       <Menu>    

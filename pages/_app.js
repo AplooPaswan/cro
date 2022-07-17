@@ -8,8 +8,6 @@ import { extendTheme } from "@chakra-ui/react"
 
 function MyApp({ Component, pageProps }) {
 
-
-
   const theme = extendTheme({
     colors: {
       myColor: {
@@ -21,14 +19,14 @@ function MyApp({ Component, pageProps }) {
   })
 
   return (
-    <div style={{display:''}}>
+    <div style={{ display: '' }}>
       <ChakraProvider theme={theme}>
-        <Navbar colorScheme="myColor"/>
+        <Navbar colorScheme="myColor" />
         {/* <Header/> */}
-        <AfterLoad/>
+        <AfterLoad />
       </ChakraProvider>
     </div>
-    
+
   )
 }
 
