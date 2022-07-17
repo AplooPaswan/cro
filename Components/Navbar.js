@@ -72,7 +72,7 @@ const Navbar = () => {
   });
 // for custom btn 
 
-console.log(`img location is ${Aploo}`);
+    console.log(`img location is ${Aploo}`);
 
 
     return (
